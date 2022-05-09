@@ -1,0 +1,37 @@
+class Node:
+    def __init__(self, name):
+        self.name = name
+        self.adjacency_list = []
+        self.visited = False
+
+
+def breadth_first_search(start_node):
+    queue = [start_node]
+
+    # keep iterating until the queue becomes empty
+    while queue:
+
+        # remove and return the first item we have inserted
+        actual_node = queue.pop(0)
+        actual_node.visited = True
+        print(actual_node.name)
+
+        # consider the neighbors of actual node
+        for n in actual_node.adjacency_list:
+            if not n.visited:
+                queue.append(n)
+
+
+if __name__ == '__main__':
+    node1 = Node("A")
+    node2 = Node("B")
+    node3 = Node("C")
+    node4 = Node("D")
+    node5 = Node("E")
+
+    node1.adjacency_list.append(node2)
+    node1.adjacency_list.append(node3)
+    node3.adjacency_list.append(node5)
+    node5.adjacency_list.append(node4)
+
+    breadth_first_search(node1)
